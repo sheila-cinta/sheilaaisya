@@ -1,0 +1,736 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sheilaportofolio.my.id  | Network Engineer</title>
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0a0f1c;
+            --card-bg: #111a2e;
+            --primary: #00f2ff; /* Cyan Neon */
+            --secondary: #7000ff; /* Purple Neon */
+            --text-main: #e0e6ed;
+            --text-muted: #94a3b8;
+            --font-main: 'Poppins', sans-serif;
+            --font-code: 'Share Tech Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 15, 28, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: var(--font-code);
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-btn { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            background: radial-gradient(circle at center, #162036 0%, var(--bg-color) 70%);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+            font-family: var(--font-code);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .typing-text {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: var(--font-code);
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .btn-fill {
+            background: var(--primary);
+            color: var(--bg-color);
+        }
+
+        .btn-fill:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--primary);
+            font-family: var(--font-code);
+        }
+
+        /* --- ABOUT --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 350px;
+            background: #1a2640;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Style untuk gambar profil */
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Agar gambar tidak gepeng */
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 3px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .skill-card h4 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-card i { color: var(--primary); }
+
+        .skill-bar {
+            width: 100%;
+            height: 6px;
+            background: #2a3b55;
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0; /* JS will animate this */
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* --- EXPERIENCE (TIMELINE) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .container-exp {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .container-exp::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--primary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+        .left::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; right: 30px; border: medium solid white; border-width: 10px 0 10px 10px; border-color: transparent transparent transparent var(--card-bg); }
+        .right::before { content: " "; height: 0; position: absolute; top: 22px; width: 0; z-index: 1; left: 30px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent var(--card-bg) transparent transparent; }
+        .right::after { left: -10px; }
+
+        .content-exp {
+            padding: 20px 30px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .date {
+            font-family: var(--font-code);
+            color: var(--primary);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- PORTFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+        }
+
+        .portfolio-img {
+            height: 200px;
+            background: #1a2640;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Agar gambar tidak keluar kotak */
+        }
+
+        /* Style untuk gambar portfolio */
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.1); /* Efek zoom saat hover */
+        }
+
+        .portfolio-info {
+            padding: 20px;
+        }
+
+        .portfolio-info h4 { margin-bottom: 10px; }
+        .portfolio-info p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+
+        /* --- CONTACT --- */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 8px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-color);
+            border: 1px solid #2a3b55;
+            color: var(--text-main);
+            border-radius: 5px;
+            font-family: var(--font-main);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #05080f;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+            .menu-btn { display: block; }
+            
+            .about-container { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+            
+            /* Timeline Mobile Fix */
+            .timeline::after { left: 31px; }
+            .container-exp { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .container-exp::after { left: 21px; }
+            .left::before, .right::before { left: 60px; border: medium solid white; border-width: 10px 10px 10px 0; border-color: transparent var(--card-bg) transparent transparent; }
+            .left::after, .right::after { left: 21px; }
+            .right { left: 0%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">&lt;SHEILA_DEV /&gt;</div>
+        <div class="menu-btn"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About me</a></li>
+            <li><a href="#skills">Keahlian</a></li>
+            <li><a href="#experience">Pengalaman</a></li>
+            <li><a href="#portfolio">Portofolio</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Halo, Saya <span>Sheila Aisya Cinta Ramadani</span></h1>
+            <p>Saya adalah siswa <span class="typing-text"></span></p>
+            <div style="margin-top: 20px;">
+                <a href="#portfolio" class="btn btn-fill">Lihat Karya</a>
+                <a href="#contact" class="btn">Hubungi Saya</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-img">
+                <!-- Contoh: src="foto-profil.jpg" -->
+                <img src="shla.jpeg" alt="Foto Profil">
+            </div>
+            <div class="about-text">
+                <h3>Network Enthusiast & Future Engineer</h3>
+                <p>
+                    Halo! Saya Sheila Aisya Cinta Ramadani, siswa kelas 12 di SMKN 1 Tanjung Anom, jurusan Teknik Komputer dan Jaringan.
+
+                    Saya memiliki minat besar dalam bidang teknologi jaringan dan pengembangan diri. Saya terbiasa belajar hal baru, bekerja secara teliti, serta bertanggung jawab dalam menyelesaikan tugas.
+
+                    Melalui portofolio ini, saya menampilkan beberapa pengalaman dan keterampilan yang telah saya pelajari selama masa pendidikan di bidang jaringan komputer.
+                </p>
+                <a href="CVSHEILA.jpeg" download class="btn">Download CV <i class="fas fa-download"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <h2 class="section-title">Keahlian Teknis</h2>
+        <div class="skills-grid">
+            <!-- Skill 1 -->
+            <div class="skill-card">
+                <h4><i class="fas fa-network-wired"></i> Jaringan Dasar</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+            </div>
+            <!-- Skill 2 -->
+            <div class="skill-card">
+                <h4><i class="fas fa-server"></i> Mikrotik & Cisco</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+            </div>
+            <!-- Skill 3 -->
+            <div class="skill-card">
+                <h4><i class="fab fa-linux"></i> Microsoft Word</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+            </div>
+            <!-- Skill 4 -->
+            <div class="skill-card">
+                <h4><i class="fas fa-tools"></i> Crimping Kabel LAN</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+            </div>
+            <!-- Skill 5 -->
+            <div class="skill-card">
+                <h4><i class="fas fa-wifi"></i> Microsoft Excel</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 60%"></div></div>
+            </div>
+            <!-- Skill 6 -->
+            <div class="skill-card">
+                <h4><i class="fas fa-code"></i> HTML & CSS Dasar</h4>
+                <div class="skill-bar"><div class="skill-fill" style="width: 50%"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience">
+        <h2 class="section-title">Pengalaman</h2>
+        <div class="timeline">
+            <!-- Item 1: Magang -->
+            <div class="container-exp left">
+                <div class="content-exp">
+                    <span class="date">15 Juli 2025 - 15 Desember 2025</span>
+                    <h3>Magang / PKL</h3>
+                    <h4>Nafisa Net</h4>
+                    <p style="color: var(--text-muted); margin-top: 10px;">
+                        Melakukan instalasi jaringan Fiber Optik (FTTH), troubleshooting koneksi pelanggan, konfigurasi ODP/ODC, dan maintenance jaringan ISP.
+                    </p>
+                </div>
+            </div>
+            <!-- Item 2: Pramuka -->
+            <div class="container-exp right">
+                <div class="content-exp">
+                    <span class="date">2023 - 2025</span>
+                    <h3>Anggota Pramuka</h3>
+                    <h4>SMK Negeri 1 Tanjunganom</h4>
+                    <p style="color: var(--text-muted); margin-top: 10px;">
+                        Aktif dalam kegiatan kepramukaan, melatih kedisiplinan, kepemimpinan, dan kerjasama tim. Mengikuti perkemahan wirakarya dan jambore.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio">
+        <h2 class="section-title">Portofolio Proyek</h2>
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <!-- GANTI: Masukkan nama file gambar proyek 1 -->
+                    <!-- Contoh: src="proyek-topologi.jpg" -->
+                    <img src="sketsa.png" alt="Topologi Jaringan">
+                </div>
+                <div class="portfolio-info">
+                    <h4>Desain Topologi Jaringan Sekolah</h4>
+                    <p>Mendesain topologi jaringan LAN dan VLAN menggunakan Cisco Packet Tracer untuk laboratorium komputer.</p>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <!-- GANTI: Masukkan nama file gambar proyek 2 -->
+                    <!-- Contoh: src="proyek-hotspot.jpg" -->
+                    <img src="konfigurasi.png" alt="Hotspot Mikrotik">
+                </div>
+                <div class="portfolio-info">
+                    <h4>Konfigurasi Hotspot Mikrotik</h4>
+                    <p>Implementasi sistem login hotspot voucheran dengan manajemen bandwidth user profile.</p>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="portfolio-item">
+                <div class="portfolio-img">
+                    <!-- GANTI: Masukkan nama file gambar proyek 3 -->
+                    <!-- Contoh: src="proyek-server.jpg" -->
+                    <img src="troubleshooting.jpg" alt="Windows Server">
+                </div>
+                <div class="portfolio-info">
+                    <h4>Troubleshooting Jaringan Komputer dan Internet</h4>
+                    <p>Proses sistematis menemukan dan memperbaiki masalah konektivitas (fisik, konfigurasi, software) untuk memulihkan internet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2 class="section-title">Hubungi Saya</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>aisyasheila5@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <h4>WhatsApp</h4>
+                        <p>+62 815 7505 5291</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Alamat</h4>
+                        <p>Dsn.Ngetrep Ds.Kurungrejo Kec.Prambon Kab.Nganjuk</p>
+                    </div>
+                </div>
+                
+               
+            </div>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Nama Kamu" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Kamu" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Pesan..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-fill" style="width: 100%;">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 sheila aisya cinta ramadani.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // 2. Typing Effect
+        const textElement = document.querySelector('.typing-text');
+        const texts = ["Siswa TKJ", "Network Engineer", "IT Support", "Tech Enthusiast"];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+
+        (function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
+
+            textElement.textContent = letter;
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // Tunggu 2 detik sebelum ganti kata
+            } else {
+                setTimeout(type, 100); // Kecepatan mengetik
+            }
+        })();
+
+        // 3. Scroll Reveal Animation (Simple)
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.skill-card, .container-exp, .portfolio-item');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].style.opacity = '1';
+                    reveals[i].style.transform = 'translateY(0)';
+                }
+            }
+        }
+        
+        // Init styles for reveal
+        document.querySelectorAll('.skill-card, .container-exp, .portfolio-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+        });
+        
+        // Trigger reveal once on load
+        reveal();
+
+    </script>
+</body>
+</html>
